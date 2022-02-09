@@ -3,7 +3,13 @@ import "./App.css";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import MailIcon from '@mui/icons-material/Mail';
+import { Breadkingbad } from "./Breadkingbad";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { textAlign } from "@mui/system";
 
 
 export default function App() {
@@ -79,6 +85,7 @@ export default function App() {
   const [movierat, setmovierat] = useState("")
   return (
     <>
+      <Welcome />
       <div className="formlist">
         <TextField label="name" variant="outlined" onChange={(e) => setname(e.target.value)} />
         <TextField label="poster" variant="outlined" onChange={(e) => setmoviepos(e.target.value)} />
@@ -115,67 +122,17 @@ export default function App() {
   );
 }
 
-function Breadkingbad({ name, poster, summary, rating }) {
-  const [state, setstate] = useState(0)
-  const [dislike, setdislike] = useState(0)
-  const styles = {
-    color: rating > 8.5 ? "green" : "red"
-  }
-  const [show, setshow] = useState(false)
-  const summstyle = {
-    display: show ? "block" : "none",
+function Welcome() {
+  const stylish = {
+    color: "teal",
+    justifyContent: "center",
+    textAlign: "center",
+    backgroundColor: "darkorange",
   }
   return (
-    <div className="display">
-      <img className="imagedisplay" src={poster} ></img>
-      <div className="head">
-        <h2 className="name">{name}</h2>
-        <p style={styles}>⭐{rating}</p>
-      </div>
-      <button onClick={() => setshow(!show)}>Toogle Description</button>
-      <p className=" summ" style={summstyle}>{summary}</p>
-      <div className="symbol">
-        <IconButton color="success"
-          className="thumbs" onClick={() => setstate(state + 1)}>👍{state}
-        </IconButton>
-        <IconButton color="error"
-          className="down" onClick={() => setdislike(dislike + 1)}>👎{dislike}
-        </IconButton>
-      </div>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <h1 style={stylish}>Breaking Bad Fandom</h1>
+    </Box>
   );
 }
 
-function Color() {
-  const [color, setcolor] = useState("pink");
-  const backcr = {
-    backgroundColor: color
-  }
-  const [colorList, setcolorList] = useState(["red", "blue", "yellow", "black"])
-  return (
-    <div>
-      <input type="text" placeholder="Enter a Color" onChange={(e) => setcolor(e.target.value)} style={backcr} />
-      <button onClick={() => setcolorList([...colorList, color])}>Add Color</button>
-      {colorList.map((clr) => {
-        return (
-          <Colorbox color={clr}></Colorbox>
-        )
-      }
-      )}
-    </div>
-  )
-}
-
-function Colorbox({ color }) {
-  const colorboxstyle = {
-    width: "200px",
-    height: "30px",
-    margin: "10px",
-    backgroundColor: color,
-  }
-  return (
-    <div style={colorboxstyle}>
-    </div>
-
-  )
-}
